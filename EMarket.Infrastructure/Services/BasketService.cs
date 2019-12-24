@@ -25,7 +25,7 @@ namespace EMarket.Infrastructure.Services
                 _httpContextAccessor.HttpContext.Session.Set("basket", _basket);
             }
         }
-        public IReadOnlyCollection<BasketItem> BasketItems => _basket.Items;
+        public IReadOnlyCollection<BasketItem> BasketItems => _basket.Items.AsReadOnly();
 
         public void AddItemToBasket(int productId, string productName, decimal unitPrice, string imagePath, int quantity = 1)
         {

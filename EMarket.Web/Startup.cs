@@ -40,7 +40,7 @@ namespace EMarket.Web
             services.AddSession(options =>
             {
                 // Set a short timeout for easy testing.
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.IdleTimeout = TimeSpan.FromSeconds(10000);
                 options.Cookie.HttpOnly = true;
                 // Make the session cookie essential
                 options.Cookie.IsEssential = true;
@@ -64,11 +64,11 @@ namespace EMarket.Web
 
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped<IHomeIndexViewModelService, HomeIndexViewModelService>();
-            services.AddScoped<ICategoryService, CategoryService>();
-
+            services.AddScoped<ICategoryService, CategoryService>();    
+            services.AddScoped<IBasketService, BasketService>();
+            services.AddScoped<IBasketViewModelService, BasketViewModelService>();
 
             services.AddHttpContextAccessor();
-            services.AddScoped<IBasketService, BasketService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
